@@ -1,0 +1,121 @@
+.sidenav {
+  .logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--black);
+
+    div:nth-child(1) {
+      color: var(--white);
+      font-size: 20px;
+      font-family: var(--raleway);
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+
+    .icon {
+      display: none;
+    }
+  }
+
+  .sidenav-list {
+    .changes-text {
+      color: var(--light-blue);
+      font-size: 17px;
+      font-family: var(--raleway);
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-top: 40px;
+      margin-bottom: 10px;
+    }
+
+    .other-city {
+      color: var(--white);
+      font-size: 20px;
+      font-family: var(--raleway);
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    .city-container {
+      .list-cities {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--black2);
+        border-radius: 30px;
+        padding: 15px;
+        grid-gap: 15px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-all;
+
+        .left {
+          .country {
+            font-size: 14px;
+            font-family: var(--raleway);
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
+            margin-bottom: 5px;
+            color: var(--white);
+          }
+
+          .city {
+            font-size: 20px;
+            font-family: var(--raleway);
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            margin-bottom: 9px;
+            color: var(--white);
+          }
+
+          .desc {
+            font-size: 16px;
+            font-family: var(--raleway);
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            color: var(--white);
+            text-transform: capitalize;
+          }
+        }
+
+        .right {
+          img {
+            width: 50px;
+            height: 50px;
+          }
+
+          .degree {
+            font-size: 30px;
+            font-family: var(--raleway);
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            margin-top: 10px;
+            color: var(--light-blue);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .sidenav {
+    .logo {
+      .icon {
+        display: inline;
+      }
+    }
+  }
+}

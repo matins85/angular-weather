@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "material-icons/iconfont/material-icons.css";
+@import "./assets/css/raleway.css";
+@import "./assets/css/highcharts.css";
+
+:root {
+  --white: #e7e7eb;
+  --raleway: "Raleway";
+  --black: #101014;
+  --black2: #1b1b1d;
+  --light-blue: #bcd8ec;
+}
+
+html,
+body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--raleway);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--light-blue);
+  transition: all 0.5s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--light-blue);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--black);
+}

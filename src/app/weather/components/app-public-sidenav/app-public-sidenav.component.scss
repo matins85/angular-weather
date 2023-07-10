@@ -1,0 +1,23 @@
+mat-sidenav-container {
+  min-height: 100vh;
+  background: var(--black);
+  position: relative;
+}
+
+.sidenav {
+  width: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: unset;
+  padding: 20px;
+}
+
+.main {
+  padding: 20px;
+}
+
+@media (max-width: 1200px) {
+  .sidenav {
+    width: 330px;
+  }
+}

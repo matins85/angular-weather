@@ -1,0 +1,23 @@
+.sidenav-chance-chart {
+  height: 250px;
+}
+
+::ng-deep .sidenav-chance-chart .highcharts-axis-labels {
+  font-family: var(--raleway);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+::ng-deep .sidenav-chance-chart .highcharts-axis-labels text {
+  fill: var(--light-blue) !important;
+}
+
+::ng-deep .sidenav-chance-chart rect.highcharts-background {
+  fill: unset;
+  width: unset;
+}
+
+::ng-deep .sidenav-chance-chart svg.highcharts-root {
+  width: auto !important;
+}

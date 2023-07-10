@@ -1,0 +1,23 @@
+.uv-chart {
+  height: 200px;
+}
+
+::ng-deep .uv-chart .highcharts-axis-labels {
+  font-family: var(--raleway);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+::ng-deep .uv-chart .highcharts-axis-labels text {
+  fill: var(--light-blue) !important;
+}
+
+::ng-deep .uv-chart rect.highcharts-background {
+  fill: unset;
+  width: unset;
+}
+
+::ng-deep .uv-chart svg.highcharts-root {
+  width: auto !important;
+}
