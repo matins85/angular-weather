@@ -12,6 +12,7 @@ import { WeatherService } from 'src/app/services/weather.service';
 import {
   AddProfile,
   AddWeatherDetails,
+  RemoveWeatherDetails,
 } from 'src/app/weather/store/actions/weather';
 import {
   AppState,
@@ -93,6 +94,7 @@ export class AppPublicSidenavComponent {
       .subscribe(
         (data: any) => {
           this.loading = false;
+          this.store.dispatch(new RemoveWeatherDetails([{ id: 1, data: [] }]));
           this.store.dispatch(new AddWeatherDetails([{ id: 1, data: data }]));
           this.shared.sendClickEvent();
         },
