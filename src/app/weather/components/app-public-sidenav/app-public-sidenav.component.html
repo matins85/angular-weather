@@ -1,4 +1,10 @@
-<mat-sidenav-container class="sidenav-container">
+<div *ngIf="loading" class="loader">
+    <div class="lds-ripple">
+        <div></div><div></div>
+    </div>
+</div>
+
+<mat-sidenav-container class="sidenav-container" *ngIf="!loading">
     <mat-sidenav #publicsidenav hasBackdrop="false" class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
         <app-app-public-sidenav-list (publicsidenavClose)="publicsidenav.close()"></app-app-public-sidenav-list>
     </mat-sidenav>

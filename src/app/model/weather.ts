@@ -70,6 +70,11 @@ export interface Profile {
   data: any;
 }
 
+export interface WeatherDetails {
+  id: number;
+  data: any;
+}
+
 export let RedMap: any = {
   type: 'FeatureCollection',
   features: [

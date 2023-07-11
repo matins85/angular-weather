@@ -18,8 +18,8 @@ export class WeatherService {
     return this.message;
   }
 
-  sendClickEvent() {
-    this.subject.next(null);
+  sendClickEvent(data?: any) {
+    this.subject.next(data);
   }
 
   getClickEvent(): Observable<any> {

@@ -1,11 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -17,8 +11,20 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Observable, map, startWith } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription, map, startWith } from 'rxjs';
+import { Profile, WeatherDetails } from 'src/app/model/weather';
 import { HttpService } from 'src/app/services/http.service';
+import { WeatherService } from 'src/app/services/weather.service';
+import {
+  AddProfile,
+  RemoveProfile,
+} from 'src/app/weather/store/actions/weather';
+import {
+  AppState,
+  selectAllProfile,
+  selectAllWeatherDetails,
+} from 'src/app/weather/store/reducers/weather';
 
 @Component({
   selector: 'app-header',
@@ -38,43 +44,85 @@ import { HttpService } from 'src/app/services/http.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Output() public publicsidenavToggle = new EventEmitter();
   @ViewChild('fform') feedbackFormDirective: any;
   feedbackForm: any = FormGroup;
-  options: string[] = [];
-  filteredOptions: Observable<string[]> | undefined;
+  options: any[] = [];
+  cities: any[] = [];
+  filteredOptions: Observable<any[]> | undefined;
+  clickEventSubscription?: Subscription;
+  data: any;
+  stateProfile: Observable<Profile[]>;
+  stateWeatherDetails: Observable<WeatherDetails[]>;
 
-  constructor(private fb: FormBuilder, private httpService: HttpService) {
+  constructor(
+    private fb: FormBuilder,
+    private httpService: HttpService,
+    private shared: WeatherService,
+    private store: Store<AppState>
+  ) {
+    this.stateProfile = store.select(selectAllProfile);
+    this.stateWeatherDetails = store.select(selectAllWeatherDetails);
+    this.clickEventSubscription = this.shared.getClickEvent().subscribe(() => {
+      this.getCities();
+    });
     this.createForm();
+    this.getCities();
   }
 
   createForm() {
     this.feedbackForm = this.fb.group({
       search: [''],
     });
-
-    this.feedbackForm.valueChanges.subscribe((data: any) =>
-      this.onValueChanged(this.feedbackForm.value.phone)
-    );
-    this.onValueChanged();
   }
 
-  onValueChanged(data?: any) {
-    console.log(data);
+  getCity(data: any) {
+    this.data = data;
+    this.store.dispatch(new RemoveProfile([{ id: 1, data: [] }]));
+    this.store.dispatch(new AddProfile([{ id: 1, data: data }]));
+    this.shared.sendClickEvent(data);
   }
 
   private _filter(value: string): string[] {
     const filterValue = value;
-    return this.options.filter((option) => option.includes(filterValue));
+    return this.options.filter((option) =>
+      option?.name?.toLowerCase()?.includes(filterValue)
+    );
   }
 
-  ngOnInit(): void {
-    this.options = ['bida', 'abuja', 'sokoto'];
-    this.filteredOptions = this.feedbackForm.get('search').valueChanges.pipe(
-      startWith(''),
-      map((value: string) => this._filter(value))
-    );
+  getCities() {
+    this.stateProfile?.forEach((e) => {
+      if (e.length > 0) {
+        this.data = e[0]?.data;
+        this.getCityBaseOnLocation();
+      } else {
+        this.stateWeatherDetails?.forEach((e) => {
+          if (e.length > 0) {
+            this.data = e[0]?.data;
+            this.getCityBaseOnLocation();
+          }
+        });
+      }
+    });
+  }
+
+  getCityBaseOnLocation() {
+    this.httpService.getCities().then((data: any) => {
+      let cities = data?.filter((name: any) => {
+        return (
+          name?.country?.toLowerCase() ==
+            this.data?.country_code?.toLowerCase() ||
+          this.data?.country?.toLowerCase()
+        );
+      });
+      this.options = cities;
+      this.cities = cities;
+      this.filteredOptions = this.feedbackForm.get('search').valueChanges.pipe(
+        startWith(''),
+        map((value: string) => this._filter(value))
+      );
+    });
   }
 
   public onPublicHeaderToggleSidenav = () => {
