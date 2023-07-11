@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Chart, ChartModule } from 'angular-highcharts';
 
 @Component({
@@ -10,7 +10,10 @@ import { Chart, ChartModule } from 'angular-highcharts';
   encapsulation: ViewEncapsulation.Emulated,
   styleUrls: ['./wind-chart.component.scss'],
 })
-export class WindChartComponent {
+export class WindChartComponent implements OnInit {
+  @Input() trends: any;
+  category: any[] = [];
+
   windChart: any = new Chart({
     chart: {
       type: 'spine',
@@ -66,9 +69,20 @@ export class WindChartComponent {
         color: '#bcd8ec',
         dashStyle: 'Dash',
         type: 'spline',
-        keys: ['y', 'selected'],
-        data: [51.9, 32.32, 14.32],
+        data: this.category,
       },
     ],
   });
+
+  initData() {
+    this.category.push(
+      { y: this.trends?.wind?.speed, selected: true },
+      { y: this.trends?.wind?.deg, selected: true },
+      { y: this.trends?.wind?.gust, selected: true }
+    );
+  }
+
+  ngOnInit(): void {
+    this.initData();
+  }
 }

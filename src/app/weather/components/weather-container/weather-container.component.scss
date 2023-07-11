@@ -16,6 +16,7 @@
       word-wrap: break-word;
       overflow-wrap: break-word;
       word-break: break-all;
+      height: 500px;
 
       img {
         width: 130px;
@@ -133,14 +134,15 @@
 
       .card-p {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        justify-content: space-between;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: left;
         align-items: top;
-        grid-gap: 20px;
+        grid-gap: 10px;
 
         .card {
           border-radius: 20px;
           padding: 20px;
+          width: 400px;
 
           .wind-status {
             background: var(--black);
@@ -148,6 +150,8 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 20px;
             padding: 15px;
+            // width: 200px;
+            // height: 300px;
 
             .card-text {
               font-size: 19px;
@@ -239,6 +243,7 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 20px;
             padding: 15px;
+            // width: 200px;
 
             .small-text {
               font-size: 19px;
@@ -303,5 +308,33 @@
     padding: 20px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
+  }
+}
+
+@media (max-width: 1669px) {
+  .wrapper {
+    .weather-container {
+      .right {
+        .card-p {
+          .card {
+            width: 300px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1400px) {
+  .wrapper {
+    .weather-container {
+      .right {
+        .card-p {
+          .card {
+            width: 250px;
+          }
+        }
+      }
+    }
   }
 }

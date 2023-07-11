@@ -43,11 +43,6 @@ export class AppPublicSidenavComponent {
   loading2: boolean = false;
   stateProfile: Observable<Profile[]>;
   clickEventSubscription?: Subscription;
-  options: any = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0,
-  };
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -66,20 +61,6 @@ export class AppPublicSidenavComponent {
     this.loading = true;
     this.stateProfile = store.select(selectAllProfile);
     this.getLocation();
-
-    navigator.geolocation.getCurrentPosition(
-      this.success,
-      this.error,
-      this.options
-    );
-  }
-
-  success(pos: any) {
-    console.log(pos);
-  }
-
-  error(err: any) {
-    console.log(err);
   }
 
   isHandset$: Observable<boolean> = this.breakpointObserver
@@ -105,7 +86,6 @@ export class AppPublicSidenavComponent {
         },
         () => {}
       );
-
     // // get user curent lon and lat
     // this.httpService
     //   .getSingleNoAuth(baseUrl.geoDBServer + baseUrl.geoDBKey)

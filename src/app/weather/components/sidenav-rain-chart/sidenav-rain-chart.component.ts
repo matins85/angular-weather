@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Chart, ChartModule } from 'angular-highcharts';
 
 @Component({
@@ -10,7 +10,10 @@ import { Chart, ChartModule } from 'angular-highcharts';
   encapsulation: ViewEncapsulation.Emulated,
   styleUrls: ['./sidenav-rain-chart.component.scss'],
 })
-export class SidenavRainChartComponent {
+export class SidenavRainChartComponent implements OnInit {
+  @Input() trends: any;
+  category: any[] = [];
+
   barChart: any = new Chart({
     chart: {
       type: 'line',
@@ -30,7 +33,7 @@ export class SidenavRainChartComponent {
       },
       labels: {
         formatter: function () {
-          return this.value + '%';
+          return this.value + '';
         },
       },
     },
@@ -45,7 +48,7 @@ export class SidenavRainChartComponent {
       gridLineColor: '#bcd8ec',
       lineColor: '#bcd8ec',
       lineWidth: 0.3,
-      categories: ['10AM', '10PM', '12AM'],
+      categories: ['3h'],
     },
     plotOptions: {
       column: {
@@ -59,12 +62,16 @@ export class SidenavRainChartComponent {
       {
         type: 'column',
         color: '#bcd8ec',
-        data: [
-          { y: 90, color: '#bcd8ec' },
-          { y: 90, color: '#bcd8ec' },
-          { y: 50, color: '#bcd8ec' },
-        ],
+        data: this.category,
       },
     ],
   });
+
+  initData() {
+    this.category.push({ y: this.trends?.rain['3h'] });
+  }
+
+  ngOnInit(): void {
+    this.initData();
+  }
 }

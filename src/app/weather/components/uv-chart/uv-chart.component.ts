@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Chart, ChartModule } from 'angular-highcharts';
 
 @Component({
@@ -11,6 +11,9 @@ import { Chart, ChartModule } from 'angular-highcharts';
   styleUrls: ['./uv-chart.component.scss'],
 })
 export class UvChartComponent {
+  @Input() trends: any;
+  category: any[] = [];
+
   uvChart: any = new Chart({
     chart: {
       type: 'pie',
