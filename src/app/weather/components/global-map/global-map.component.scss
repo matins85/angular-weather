@@ -1,0 +1,18 @@
+.map-container {
+  height: 600px;
+  border-radius: 20px;
+}
+
+.map-frame {
+  height: 600px;
+  border-radius: 20px;
+}
+
+#map {
+  height: 600px;
+  border-radius: 20px;
+}
+
+::ng-deep .leaflet-container .leaflet-control-attribution {
+  display: none;
+}

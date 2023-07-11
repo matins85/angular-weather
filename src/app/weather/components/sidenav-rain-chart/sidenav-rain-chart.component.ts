@@ -30,7 +30,7 @@ export class SidenavRainChartComponent {
       },
       labels: {
         formatter: function () {
-          return this.value + '';
+          return this.value + '%';
         },
       },
     },
@@ -60,9 +60,9 @@ export class SidenavRainChartComponent {
         type: 'column',
         color: '#bcd8ec',
         data: [
-          { y: 1000, color: '#bcd8ec' },
-          { y: 900, color: '#bcd8ec' },
-          { y: 800, color: '#bcd8ec' },
+          { y: 90, color: '#bcd8ec' },
+          { y: 90, color: '#bcd8ec' },
+          { y: 50, color: '#bcd8ec' },
         ],
       },
     ],

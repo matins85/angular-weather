@@ -31,6 +31,20 @@ export class UvChartComponent {
         },
       },
     },
+    // responsive: {
+    //   rules: [
+    //     {
+    //       condition: {
+    //         maxWidth: 500,
+    //       },
+    //       chartOptions: {
+    //         legend: {
+    //           enabled: false,
+    //         },
+    //       },
+    //     },
+    //   ],
+    // },
     title: {
       verticalAlign: 'middle',
       floating: true,

@@ -15,6 +15,7 @@ export interface Forecast {
   temp: number;
   temp_min: number;
   temp_max: number;
+
   pressure: number;
   sea_level: number;
   grnd_level: number;
@@ -68,3 +69,69 @@ export interface Profile {
   id: number;
   data: any;
 }
+
+export let RedMap: any = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [10.5111142, 7.4066299],
+      },
+      properties: {
+        state: 'Alabama',
+        name: 'Montgomery',
+        density: 77.9,
+      },
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [10.5123749, 7.3942885],
+      },
+      properties: {
+        state: 'Alaska',
+        name: 'Juneau',
+        density: 37.9,
+      },
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [10.5102436, 7.3747219],
+      },
+      properties: {
+        state: 'Arizona',
+        name: 'Phoenix',
+        density: 89.9,
+      },
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [10.488983, 7.4001799],
+      },
+      properties: {
+        state: 'Arkansas',
+        name: 'Little Rock',
+        density: 99,
+      },
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [10.805952, 7.715194],
+      },
+      properties: {
+        state: 'California',
+        name: 'Sacramento',
+        density: 21.7,
+      },
+    },
+  ],
+};

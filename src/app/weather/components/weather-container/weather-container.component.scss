@@ -4,6 +4,7 @@
     justify-content: space-between;
     align-items: top;
     grid-gap: 30px;
+    margin-bottom: 30px;
 
     .left {
       padding: 20px;
@@ -292,5 +293,12 @@
         }
       }
     }
+  }
+
+  .global-map {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
   }
 }
