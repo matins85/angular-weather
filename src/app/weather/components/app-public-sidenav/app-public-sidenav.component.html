@@ -12,6 +12,11 @@
     <mat-sidenav-content class="mat-sidenav-content">
         <app-header (publicsidenavToggle)="publicsidenav.toggle()"></app-header>
         <div class="main">
+            <div *ngIf="loading2" class="loader2">
+                <div class="lds-ripple2">
+                    <div></div><div></div>
+                </div>
+            </div>
             <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>

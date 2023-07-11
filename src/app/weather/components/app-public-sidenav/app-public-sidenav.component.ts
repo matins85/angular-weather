@@ -40,8 +40,14 @@ import { HeaderComponent } from '../header/header.component';
 export class AppPublicSidenavComponent {
   headeropened = false;
   loading: boolean = false;
+  loading2: boolean = false;
   stateProfile: Observable<Profile[]>;
   clickEventSubscription?: Subscription;
+  options: any = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -60,6 +66,20 @@ export class AppPublicSidenavComponent {
     this.loading = true;
     this.stateProfile = store.select(selectAllProfile);
     this.getLocation();
+
+    navigator.geolocation.getCurrentPosition(
+      this.success,
+      this.error,
+      this.options
+    );
+  }
+
+  success(pos: any) {
+    console.log(pos);
+  }
+
+  error(err: any) {
+    console.log(err);
   }
 
   isHandset$: Observable<boolean> = this.breakpointObserver
@@ -70,7 +90,23 @@ export class AppPublicSidenavComponent {
     );
 
   getLocation() {
-    // get user curent lon and lat
+    // this.httpService
+    //   .getSingleNoAuth(
+    //     baseUrl.weatherServer +
+    //       `?lat=10&lon=8.5&cnt=8&units=metric&appid=` +
+    //       baseUrl.APPID
+    //   )
+    //   .subscribe(
+    //     (data: any) => {
+    //       this.loading = false;
+    //       this.store.dispatch(new RemoveWeatherDetails([{ id: 1, data: [] }]));
+    //       this.store.dispatch(new AddWeatherDetails([{ id: 1, data: data }]));
+    //       this.shared.sendClickEvent();
+    //     },
+    //     () => {}
+    //   );
+
+    // // get user curent lon and lat
     this.httpService
       .getSingleNoAuth(baseUrl.geoDBServer + baseUrl.geoDBKey)
       .subscribe(
@@ -79,28 +115,27 @@ export class AppPublicSidenavComponent {
           // get weather forcast for present location
           this.getWeatherDetails(data?.latitude, data?.longitude);
         },
-        () => {
-          // this.getLocation();
-        }
+        () => {}
       );
   }
 
   getWeatherDetails(lat: number, lon: number) {
-    this.loading = true;
+    this.loading2 = true;
     this.httpService
       .getSingleNoAuth(
-        baseUrl.weatherServer + `?lat=${lat}&lon=${lon}&appid=` + baseUrl.APPID
+        baseUrl.weatherServer +
+          `?lat=${lat}&lon=${lon}&cnt=8&units=metric&appid=` +
+          baseUrl.APPID
       )
       .subscribe(
         (data: any) => {
           this.loading = false;
+          this.loading2 = false;
           this.store.dispatch(new RemoveWeatherDetails([{ id: 1, data: [] }]));
           this.store.dispatch(new AddWeatherDetails([{ id: 1, data: data }]));
           this.shared.sendClickEvent();
         },
-        () => {
-          // this.getLocation();
-        }
+        () => {}
       );
   }
 }

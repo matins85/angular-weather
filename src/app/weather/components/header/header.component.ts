@@ -108,18 +108,19 @@ export class HeaderComponent {
   }
 
   getCityBaseOnLocation() {
-    if (this.cities) {
+    if (this.cities?.length > 0) {
     } else {
       this.httpService.getCities().then((data: any) => {
-        let cities = data?.filter((name: any) => {
-          return (
-            name?.country?.toLowerCase() ==
-              this.data?.country_code?.toLowerCase() ||
-            this.data?.country?.toLowerCase()
-          );
+        data?.filter((name: any) => {
+          if (
+            name?.country?.toUpperCase() ===
+            (this.data?.country_code?.toUpperCase() ||
+              this.data?.city?.country?.toUpperCase())
+          ) {
+            this.options.push(name);
+            this.cities.push(name);
+          }
         });
-        this.options = cities;
-        this.cities = cities;
         this.filteredOptions = this.feedbackForm
           .get('search')
           .valueChanges.pipe(

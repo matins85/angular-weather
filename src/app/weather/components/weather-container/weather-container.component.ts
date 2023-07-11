@@ -1,22 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { GlobalMapComponent } from '../global-map/global-map.component';
-import { SunriseChartComponent } from '../sunrise-chart/sunrise-chart.component';
-import { UvChartComponent } from '../uv-chart/uv-chart.component';
-import { WindChartComponent } from '../wind-chart/wind-chart.component';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription, map, startWith } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Profile, WeatherDetails } from 'src/app/model/weather';
 import { WeatherService } from 'src/app/services/weather.service';
-import {
-  AddProfile,
-  RemoveProfile,
-} from 'src/app/weather/store/actions/weather';
 import {
   AppState,
   selectAllProfile,
   selectAllWeatherDetails,
 } from 'src/app/weather/store/reducers/weather';
+import { GlobalMapComponent } from '../global-map/global-map.component';
+import { SunriseChartComponent } from '../sunrise-chart/sunrise-chart.component';
+import { UvChartComponent } from '../uv-chart/uv-chart.component';
+import { WindChartComponent } from '../wind-chart/wind-chart.component';
 
 @Component({
   selector: 'app-weather-container',

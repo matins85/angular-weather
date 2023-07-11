@@ -13,6 +13,9 @@
       background: var(--black2);
       backdrop-filter: saturate(180%) blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.3);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      word-break: break-all;
 
       img {
         width: 130px;

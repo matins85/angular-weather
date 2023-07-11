@@ -14,21 +14,21 @@
     <div class="sidenav-list">
         <div class="changes-text">Chance of rain</div>
         <div class="sidenav-chance-chart"><app-sidenav-rain-chart></app-sidenav-rain-chart></div>
-        <div class="other-city">Other cities</div>
+        <div class="other-city">Forecast for the next hours</div>
 
         <div class="city-container">
             <div class="list-cities" *ngFor="let city of cities;">
                 <div class="left">
-                    <div class="country">{{ city?.country }}</div>
-                    <div class="city">{{ city?.city }}</div>
-                    <div class="desc">{{ city?.summary }}</div>
+                    <div class="country">{{ profile?.city?.name }}</div>
+                    <div class="city">{{ city?.weather[0]?.description }}</div>
+                    <div class="desc">{{ city.dt_txt | date:'medium' }}</div>
                 </div>
+                
                 <div class="right">
-                    <img src="assets/icons/{{ city?.icon }}.png" alt=""/>
-                    <div class="degree">{{ city?.degree }}&deg;</div>
+                    <img src="assets/icons/{{ city.weather[0]?.icon }}.png" alt=""/>
+                    <div class="degree">{{ city?.main?.temp }}&deg;</div>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>
