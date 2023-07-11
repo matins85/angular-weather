@@ -80,7 +80,7 @@ export class AppPublicSidenavComponent {
           this.getWeatherDetails(data?.latitude, data?.longitude);
         },
         () => {
-          this.getLocation();
+          // this.getLocation();
         }
       );
   }
@@ -99,7 +99,7 @@ export class AppPublicSidenavComponent {
           this.shared.sendClickEvent();
         },
         () => {
-          this.getLocation();
+          // this.getLocation();
         }
       );
   }

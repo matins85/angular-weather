@@ -108,21 +108,26 @@ export class HeaderComponent {
   }
 
   getCityBaseOnLocation() {
-    this.httpService.getCities().then((data: any) => {
-      let cities = data?.filter((name: any) => {
-        return (
-          name?.country?.toLowerCase() ==
-            this.data?.country_code?.toLowerCase() ||
-          this.data?.country?.toLowerCase()
-        );
+    if (this.cities) {
+    } else {
+      this.httpService.getCities().then((data: any) => {
+        let cities = data?.filter((name: any) => {
+          return (
+            name?.country?.toLowerCase() ==
+              this.data?.country_code?.toLowerCase() ||
+            this.data?.country?.toLowerCase()
+          );
+        });
+        this.options = cities;
+        this.cities = cities;
+        this.filteredOptions = this.feedbackForm
+          .get('search')
+          .valueChanges.pipe(
+            startWith(''),
+            map((value: string) => this._filter(value))
+          );
       });
-      this.options = cities;
-      this.cities = cities;
-      this.filteredOptions = this.feedbackForm.get('search').valueChanges.pipe(
-        startWith(''),
-        map((value: string) => this._filter(value))
-      );
-    });
+    }
   }
 
   public onPublicHeaderToggleSidenav = () => {
