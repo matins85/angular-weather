@@ -22,7 +22,7 @@ export class HttpService {
 
   getCities() {
     return this.http
-      .get<any>('assets/city.list.json')
+      .get<any>('/assets/city.list.json')
       .toPromise()
       .then((res) => res);
   }
