@@ -1,21 +1,21 @@
 <div class="wrapper">
     <div class="weather-container">
         <div class="left">
-            <img src="assets/icons/thunderstorm.png" alt=""/>
-            <div class="degree"><span>15</span> <span>&#8451;</span></div>
-            <div class="summary">broken clouds</div>
+            <img src="assets/icons/{{ data?.list[0]?.weather[0]?.icon }}.png" alt=""/>
+            <div class="degree"><span>{{ data?.list[0]?.main?.temp }}</span> <span>&#8451;</span></div>
+            <div class="summary">{{ data?.list[0]?.weather[0]?.description }}</div>
             <hr/>
             <div class="location">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                     <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                 </svg>
-                <span><span>Nigeria, </span><span>Abuja</span></span>
+                <span><span>{{ data?.city?.country }}, </span><span>{{ data?.city?.name }}</span></span>
             </div>
             <div class="date">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
                     <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
                 </svg>
-                <span>24 july, 2022 5:01 AM</span>
+                <span>{{ data?.list[0]?.dt_txt | date:'medium' }}</span>
             </div>
         </div>
         <div class="right">
