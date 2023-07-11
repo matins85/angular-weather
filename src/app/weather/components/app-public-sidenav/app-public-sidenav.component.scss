@@ -84,6 +84,7 @@ mat-sidenav-container {
   overflow-y: auto;
   background: unset;
   padding: 20px;
+  background: var(--black);
 }
 
 .main {
@@ -92,6 +93,6 @@ mat-sidenav-container {
 
 @media (max-width: 1200px) {
   .sidenav {
-    width: 330px;
+    width: 350px;
   }
 }

@@ -46,7 +46,6 @@ export class WeatherContainerComponent {
     this.stateWeatherDetails?.forEach((e) => {
       if (e.length > 0) {
         this.data = e[0]?.data;
-        console.log(this.data);
       }
     });
   }

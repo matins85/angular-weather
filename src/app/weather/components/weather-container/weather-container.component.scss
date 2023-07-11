@@ -1,4 +1,6 @@
 .wrapper {
+  padding-top: 120px;
+
   .weather-container {
     display: flex;
     justify-content: space-between;
@@ -332,6 +334,37 @@
         .card-p {
           .card {
             width: 250px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    .weather-container {
+      display: unset;
+
+      .left,
+      .right {
+        width: unset;
+        height: auto;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+@media (max-width: 780px) {
+  .wrapper {
+    .weather-container {
+      .right {
+        .card-p {
+          grid-template-columns: repeat(1, 1fr);
+
+          .card {
+            width: auto;
           }
         }
       }
