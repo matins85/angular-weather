@@ -110,7 +110,7 @@ export class HeaderComponent {
   getCityBaseOnLocation() {
     if (this.cities?.length > 0) {
     } else {
-      this.httpService.getCities().then((data: any) => {
+      this.httpService.getCities().subscribe((data: any) => {
         data?.filter((name: any) => {
           if (
             name?.country?.toUpperCase() ===
