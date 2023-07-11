@@ -21,7 +21,7 @@ export class HttpService {
   constructor(private http: HttpClient) {}
 
   getCities() {
-    return this.http.get<any>('/assets/city.list.json');
+    return this.http.get<any>('assets/city.list.json');
   }
 
   postData(endpoint: any, data: any): Observable<any[]> {
