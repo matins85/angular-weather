@@ -24,15 +24,7 @@
                     <div class="desc">{{ city?.summary }}</div>
                 </div>
                 <div class="right">
-                    <img *ngIf="city?.summary?.includes('thunderstorm')" src="assets/icons/thunderstorm.png" alt=""/>
-                    <img *ngIf="city?.summary?.includes('clear sky')" src="assets/icons/clear.png" alt=""/>
-                    <img *ngIf="city?.summary?.includes('few clouds')" src="assets/icons/light-cloud.png" alt=""/>
-                    <img *ngIf="city?.summary?.includes('scattered clouds')" src="assets/icons/heavy-cloud.png" alt=""/>
-                    <img *ngIf="city?.summary?.includes('broken clouds')" src="assets/icons/heavy-cloud.png" alt=""/>
-                    <img *ngIf="city?.summary?.includes('shower rain')" src="assets/icons/light-rain.png" alt=""/>
-                    <img *ngIf="city?.summary?.includes('rain')" src="assets/icons/heavy-rain.png" alt=""/>
-                    <img *ngIf="city?.summary?.includes('snow')" src="assets/icons/snow.png" alt=""/>
-                    <img *ngIf="city?.summary?.includes('mist')" src="assets/icons/hail.png" alt=""/>
+                    <img src="assets/icons/{{ city?.icon }}.png" alt=""/>
                     <div class="degree">{{ city?.degree }}&deg;</div>
                 </div>
             </div>
