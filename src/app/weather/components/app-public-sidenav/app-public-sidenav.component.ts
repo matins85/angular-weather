@@ -71,32 +71,32 @@ export class AppPublicSidenavComponent {
     );
 
   getLocation() {
-    this.httpService
-      .getSingleNoAuth(
-        baseUrl.weatherServer +
-          `?lat=8.660261&lon=7.8699344&cnt=8&units=metric&appid=` +
-          baseUrl.APPID
-      )
-      .subscribe(
-        (data: any) => {
-          this.loading = false;
-          this.store.dispatch(new RemoveWeatherDetails([{ id: 1, data: [] }]));
-          this.store.dispatch(new AddWeatherDetails([{ id: 1, data: data }]));
-          this.shared.sendClickEvent();
-        },
-        () => {}
-      );
-    // // get user curent lon and lat
     // this.httpService
-    //   .getSingleNoAuth(baseUrl.geoDBServer + baseUrl.geoDBKey)
+    //   .getSingleNoAuth(
+    //     baseUrl.weatherServer +
+    //       `?lat=8.660261&lon=7.8699344&cnt=8&units=metric&appid=` +
+    //       baseUrl.APPID
+    //   )
     //   .subscribe(
     //     (data: any) => {
-    //       this.store.dispatch(new AddProfile([{ id: 1, data: data }]));
-    //       // get weather forcast for present location
-    //       this.getWeatherDetails(data?.latitude, data?.longitude);
+    //       this.loading = false;
+    //       this.store.dispatch(new RemoveWeatherDetails([{ id: 1, data: [] }]));
+    //       this.store.dispatch(new AddWeatherDetails([{ id: 1, data: data }]));
+    //       this.shared.sendClickEvent();
     //     },
     //     () => {}
     //   );
+    // get user curent lon and lat
+    this.httpService
+      .getSingleNoAuth(baseUrl.geoDBServer + baseUrl.geoDBKey)
+      .subscribe(
+        (data: any) => {
+          this.store.dispatch(new AddProfile([{ id: 1, data: data }]));
+          // get weather forcast for present location
+          this.getWeatherDetails(data?.latitude, data?.longitude);
+        },
+        () => {}
+      );
   }
 
   getWeatherDetails(lat: number, lon: number) {
