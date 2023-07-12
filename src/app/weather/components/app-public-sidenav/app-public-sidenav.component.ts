@@ -71,21 +71,6 @@ export class AppPublicSidenavComponent {
     );
 
   getLocation() {
-    // this.httpService
-    //   .getSingleNoAuth(
-    //     baseUrl.weatherServer +
-    //       `?lat=8.660261&lon=7.8699344&cnt=8&units=metric&appid=` +
-    //       baseUrl.APPID
-    //   )
-    //   .subscribe(
-    //     (data: any) => {
-    //       this.loading = false;
-    //       this.store.dispatch(new RemoveWeatherDetails([{ id: 1, data: [] }]));
-    //       this.store.dispatch(new AddWeatherDetails([{ id: 1, data: data }]));
-    //       this.shared.sendClickEvent();
-    //     },
-    //     () => {}
-    //   );
     // get user curent lon and lat
     this.httpService
       .getSingleNoAuth(baseUrl.geoDBServer + baseUrl.geoDBKey)
@@ -115,7 +100,10 @@ export class AppPublicSidenavComponent {
           this.store.dispatch(new AddWeatherDetails([{ id: 1, data: data }]));
           this.shared.sendClickEvent();
         },
-        () => {}
+        () => {
+          this.loading = false;
+          this.loading2 = false;
+        }
       );
   }
 }

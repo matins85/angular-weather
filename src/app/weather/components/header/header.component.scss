@@ -105,6 +105,32 @@ mat-toolbar {
     ::ng-deep .mat-pseudo-checkbox {
       color: var(--light-blue);
     }
+
+    ::-webkit-input-placeholder {
+      /* WebKit, Blink, Edge */
+      color: var(--white);
+    }
+    :-moz-placeholder {
+      /* Mozilla Firefox 4 to 18 */
+      color: var(--white);
+    }
+    ::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      color: var(--white);
+    }
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: var(--white);
+    }
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: var(--white);
+    }
+
+    ::placeholder {
+      /* Most modern browsers support this now. */
+      color: var(--white);
+    }
   }
 }
 

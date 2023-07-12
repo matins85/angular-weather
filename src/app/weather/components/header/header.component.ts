@@ -18,13 +18,16 @@ import { HttpService } from 'src/app/services/http.service';
 import { WeatherService } from 'src/app/services/weather.service';
 import {
   AddProfile,
+  AddWeatherDetails,
   RemoveProfile,
+  RemoveWeatherDetails,
 } from 'src/app/weather/store/actions/weather';
 import {
   AppState,
   selectAllProfile,
   selectAllWeatherDetails,
 } from 'src/app/weather/store/reducers/weather';
+import { baseUrl } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -105,6 +108,20 @@ export class HeaderComponent {
         });
       }
     });
+  }
+
+  search() {
+    this.httpService
+      .getSingleNoAuth(
+        baseUrl.weatherServer +
+          `?q=${this.feedbackForm.value.search}&appid=${baseUrl.APPID}`
+      )
+      .subscribe((data: any) => {
+        this.store.dispatch(new RemoveProfile([{ id: 1, data: [] }]));
+        this.store.dispatch(new RemoveWeatherDetails([{ id: 1, data: [] }]));
+        this.store.dispatch(new AddWeatherDetails([{ id: 1, data: data }]));
+        this.shared.sendClickEvent(data);
+      });
   }
 
   getCityBaseOnLocation() {
